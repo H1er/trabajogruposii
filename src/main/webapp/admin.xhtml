@@ -1,0 +1,180 @@
+<ui:composition  align="center" template="/WEB-INF/templates/plantilla.xhtml" 
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define  name="title">Mis Actividades</ui:define>
+    <ui:define  name="content">
+
+
+    <h:form id="form" name ="form" class="servitem">
+		<h:commandButton  class="Boton" align="center" value="Ver servicios" action="#{admin.setActselec(admin.acts.actividades.get(0))}"  />	
+		<h:commandButton  class="Boton" align="center" value="Cerrar servicios" action="#{admin.setActselec(null)}" />
+    </h:form>
+    
+    
+
+<p:dataScroller  value="#{admin.getActs().getActividades()}" var="actividad" chunkSize="10"   >
+    <h:panelGrid  class="servitem2" columns="1" cellpadding="2" >
+    <h2 class="cosas">Actividad: #{actividad.nombre}</h2>
+    	<h:panelGrid  class="servitem" columns="2" cellpadding="2" >
+			<h:panelGrid class="servitem" columns="4" cellpadding="2" >
+			<h:form>
+							
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+							 			<h:outputText class="smtit" value="Código: " /> 
+							 			<h:outputText value="#{actividad.codigo}" /> 
+							            <h:inputText value="#{actividad.codigoaux}" />
+							            <p:commandButton value="Cambiar Código" action="#{actividad.setCodigo(actividad.codigoaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										 
+							   
+										<h:panelGrid columns="4" cellpadding="5" >
+							 			<h:outputText class="smtit" value="Nombre:  "/> 
+							            <h:inputText value="#{actividad.nombreaux}" />
+							            <p:commandButton value="Cambiar Nombre" action="#{actividad.setNombre(actividad.nombreaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+							 
+										  
+										<h:panelGrid columns="4" cellpadding="5" >
+							            <h:outputText class="smtit" value="Fecha: " /> 
+							            <h:outputText value="#{actividad.fecha}" /> 
+							            <p:calendar value="#{actividad.fechaaux}"/>
+							            <p:commandButton value="Cambiar Fecha" action="#{actividad.setFecha(actividad.fechaaux)}" style="margin-right:20px;" ajax="false" />
+							           </h:panelGrid>
+							            <br/>
+										<br/>
+										 
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText class="smtit" value="Localización: " /> 
+										<h:outputText value="#{actividad.localizacion}" /> 
+							            <h:inputText value="#{actividad.localizacionaux}" />
+							            <p:commandButton value="Cambiar Localizacion" action="#{actividad.setLocalizacion(actividad.localizacionaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText  class="smtit" value="Descripción: "/> 
+										<h:outputText value="#{actividad.descripcion}"/> 
+							            <h:inputText value="#{actividad.descripcionaux}" />
+							            <p:commandButton value="Cambiar Descripcion" action="#{actividad.setDescripcion(actividad.descripcionaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText class="smtit" value="Duración: " /> 
+										<h:outputText value=" #{actividad.duracion}" /> 
+							            <h:inputText value="#{actividad.duracionaux}" />
+							            <p:commandButton value="Cambiar Duracion" action="#{actividad.setDuracion(actividad.duracionaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText class="smtit" value="Plazas: " /> 
+										<h:outputText value="#{actividad.plazas}" /> 
+							            <h:inputText value="#{actividad.plazasaux}" />
+							            <p:commandButton value="Cambiar Plazas" action="#{actividad.setPlazas(actividad.plazasaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText class="smtit" value="Descripción: " /> 
+										<h:outputText value="#{actividad.descripcion}" /> 
+							            <h:inputText value="#{actividad.descripcionaux}" />
+							            <p:commandButton value="Cambiar Descripción" action="#{actividad.setDescripcion(actividad.descripcionaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+										
+										
+										<h:panelGrid columns="4" cellpadding="5" >
+										<h:outputText class="smtit" value="Disponibilidad: " /> 
+										<h:outputText value="#{actividad.disponibilidad}" /> 
+							            <h:inputText value="#{actividad.disponibilidadaux}" />
+							            <p:commandButton value="Cambiar Disponibilidad" action="#{actividad.setDisponibilidad(actividad.disponibilidadaux)}" style="margin-right:20px;" ajax="false" />
+							            </h:panelGrid>
+							            <br/>
+										<br/>
+			</h:form>
+				
+						        
+						        
+						            
+							          
+				 <c:if test="#{admin.actselec != null}">
+				 
+				 <p:dataScroller  class="servitem2" value="#{admin.actselec.getLista_servicio()}" var="servicio" chunkSize="#{admin.actselec.getLista_servicio().size()}" >
+						
+					<h:form>
+					
+					 <h:panelGrid columns="4" cellpadding="5"  >
+							         
+							            	<h:outputText class="smtit" value="Descripción: " />
+							            	<h:outputText value="#{servicio.descripcion}" />
+							            	<h:inputText value="#{servicio.descripcionaux}" />
+							            	<p:commandButton value="Cambiar Descripción" id="nonAjax7" action="#{servicio.setDescripcion(servicio.descripcionaux)}" style="margin-right:20px;" ajax="false" />
+							
+							         
+							         
+							         
+											<h:outputText class="smtit" value="Pais: " />
+											<h:outputText value="#{servicio.pais}" />
+											<h:inputText value="#{servicio.paisaux}" />
+							            	<p:commandButton value="Cambiar Pais" id="nonAjax8" action="#{servicio.setPais(servicio.paisaux)}" style="margin-right:20px;" ajax="false" />
+											
+											
+											  
+											      
+											<h:outputText class="smtit" value="Ciudad: " />
+											<h:outputText value="#{servicio.ciudad}" />
+											<h:inputText value="#{servicio.ciudadaux}" />
+							            	<p:commandButton value="Cambiar Ciudad" id="nonAjax9" action="#{servicio.setCiudad(servicio.ciudadaux)}" style="margin-right:20px;" ajax="false" />
+										
+										
+											     
+											<h:outputText class="smtit" value="Horas: " />
+											<h:outputText value="#{servicio.horas}" />
+											<h:inputText value="#{servicio.horasaux}" />
+							            	<p:commandButton value="Cambiar Horas" id="nonAjax10" action="#{servicio.setHoras(servicio.horasaux)}" style="margin-right:20px;" ajax="false" />	
+											
+										
+											  
+											        
+											<h:outputText class="smtit" value="Número Participantes: " />
+											<h:outputText value="#{servicio.numParticipantes}" />
+											<h:inputText value="#{servicio.numParticipantesaux}" />
+							            	<p:commandButton value="Cambiar Número de Participantes" id="nonAjax11" action="#{servicio.setNumParticipantes(servicio.numParticipantesaux)}" style="margin-right:20px;" ajax="false" />
+										
+													            
+							      </h:panelGrid>		
+						</h:form>
+        
+				</p:dataScroller>    
+			
+				</c:if>
+							          
+	</h:panelGrid>
+	</h:panelGrid>
+	</h:panelGrid>
+</p:dataScroller>
+
+        
+    </ui:define>
+</ui:composition>
